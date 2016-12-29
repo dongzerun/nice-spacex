@@ -1,0 +1,255 @@
+[server]
+max_cpu     = 24
+thrift_port = 7680
+pprof_port  = 6069
+rest_port   = 7079
+#单位是纳秒, 服务默认超时时间1s
+timeout     = 1000000000
+
+[longlat_conf] 
+# 用户地理位置经纬度匹配源配置文件
+longlat2code  = "/home/nice/spacex/current/conf/longlat2code.conf"
+code2city     = "/home/nice/spacex/current/conf/code2city.conf"
+code2province = "/home/nice/spacex/current/conf/code2province.conf"
+
+[addb]
+host    = "sdb.slave.adbase.niceprivate.com"
+port    = 3307
+user    = "adbase"
+pwd     = ""
+db_name = "ad_base"
+max_idle    = 5
+max_open    = 10
+pool_size   = 10
+
+[golog]
+level       = "INFO,WARNING,ERROR,DEBUG"
+console     = 0
+dir         = "/home/nice/spacex/logs"
+filename    = "spacex.log"
+reserve_num = 7
+suffix      = "20060102"
+colorfull   = 0
+
+[userdb]
+host    = "sdb.slave.adbase.niceprivate.com"
+port    = 3307
+user    = "adbase"
+pwd     = ""
+db_name = "ad_base"
+max_idle    = 100
+max_open    = 100
+pool_size   = 100
+
+[misc]
+#开启压缩模式性能有些底，并且压缩比不是很好，平均1.2得不偿失
+#usercompressed = "lz4"
+#usercompressed = "snappy"
+usercompressed = "default"
+concurrentmatch = 1
+
+#bdb.slave.usershow
+#SELECT COUNT(*) from kk_user_show_image_tag_idx_97 where tagid=11 and uid=1111;
+[usertag]
+host    = "bdb.slave.usershow.niceprivate.com"
+port    = 3306
+user    = "nice"
+pwd     = ""
+db_name = "user_tag"
+max_idle    = 5
+max_open    = 10
+pool_size   = 10
+
+#bdb.slave.paster
+#select count(*) from user_show_paster_60 where pid=xxx and uid=xxx;
+[userpaster]
+host    = "bdb.slave.paster.niceprivate.com"
+port    = 3306
+user    = "nicepaster"
+pwd     = ""
+db_name = "paster"
+max_idle    = 5
+max_open    = 10
+pool_size   = 10
+
+#kk_user_collect 用户关注列表
+#select * from kk_user_collect where uid=当前人 and cuid=他所关注的人 limit 1;
+[coreshow]
+host    = "bdb.slave.coreshow.niceprivate.com"
+port    = 3306
+user    = "usershow"
+pwd     = ""
+db_name = "kkgoo"
+max_idle    = 5
+max_open    = 10
+pool_size   = 10
+
+#kk_user_asset 用户关注标签列表
+#select count(*) from kk_user_asset where uid=xxx and aid=xxx;
+[userasset]
+host    = "bdb.slave.kkgoo.niceprivate.com"
+port    = 3306
+user    = "nice"
+pwd     = ""
+db_name = "kkgoo"
+max_idle    = 5
+max_open    = 10
+pool_size   = 10
+
+[influxdb]
+host    = "influxes.niceprivate.com"
+port    = 8086
+db      = "adspacex"
+user    = ""
+pwd     = ""
+buffer_size = 4096
+
+#redis cache 无需持久化
+[cache]
+        [cache.1]
+                host    = "10.10.10.169"
+                port    = 5551
+                pool_size       = 100
+                max_idle        = 100
+                idle_timeout    = 30000000000
+                connect_timeout = 500000000
+                read_timeout    = 3000000000
+                write_timeout   = 3000000000
+        [cache.2]
+                host    = "10.10.10.170"
+                port    = 5551
+                pool_size       = 100
+                max_idle        = 100
+                idle_timeout    = 30000000000
+                connect_timeout = 500000000
+                read_timeout    = 3000000000
+                write_timeout   = 3000000000
+        [cache.3]
+                host    = "10.10.30.102"
+                port    = 5551
+                pool_size       = 100
+                max_idle        = 100
+                idle_timeout    = 30000000000
+                connect_timeout = 500000000
+                read_timeout    = 3000000000
+                write_timeout   = 3000000000
+        [cache.4]
+                host    = "10.10.10.113"
+                port    = 5551
+                pool_size       = 100
+                max_idle        = 100
+                idle_timeout    = 30000000000
+                connect_timeout = 500000000
+                read_timeout    = 3000000000
+                write_timeout   = 3000000000
+        [cache.5]
+                host    = "10.10.10.112"
+                port    = 5551
+                pool_size       = 100
+                max_idle        = 100
+                idle_timeout    = 30000000000
+                connect_timeout = 500000000
+                read_timeout    = 3000000000
+                write_timeout   = 3000000000
+        [cache.6]
+                host    = "10.10.10.92"
+                port    = 5551
+                pool_size       = 100
+                max_idle        = 100
+                idle_timeout    = 30000000000
+                connect_timeout = 500000000
+                read_timeout    = 3000000000
+                write_timeout   = 3000000000
+[showcache]
+        [showcache.1]
+                host    = "10.10.10.169"
+                port    = 5554
+                pool_size       = 100
+                max_idle        = 100
+                idle_timeout    = 30000000000
+                connect_timeout = 500000000
+                read_timeout    = 3000000000
+                write_timeout   = 3000000000
+        [showcache.2]
+                host    = "10.10.10.170"
+                port    = 5554
+                pool_size       = 100
+                max_idle        = 100
+                idle_timeout    = 30000000000
+                connect_timeout = 500000000
+                read_timeout    = 3000000000
+                write_timeout   = 3000000000
+        [showcache.3]
+                host    = "10.10.30.102"
+                port    = 5554
+                pool_size       = 100
+                max_idle        = 100
+                idle_timeout    = 30000000000
+                connect_timeout = 500000000
+                read_timeout    = 3000000000
+                write_timeout   = 3000000000
+        [showcache.4]
+                host    = "10.10.10.113"
+                port    = 5554
+                pool_size       = 100
+                max_idle        = 100
+                idle_timeout    = 30000000000
+                connect_timeout = 500000000
+                read_timeout    = 3000000000
+                write_timeout   = 3000000000
+        [showcache.5]
+                host    = "10.10.10.112"
+                port    = 5554
+                pool_size       = 100
+                max_idle        = 100
+                idle_timeout    = 30000000000
+                connect_timeout = 500000000
+                read_timeout    = 3000000000
+                write_timeout   = 3000000000
+        [showcache.6]
+                host    = "10.10.10.92"
+                port    = 5554
+                pool_size       = 100
+                max_idle        = 100
+                idle_timeout    = 30000000000
+                connect_timeout = 500000000
+                read_timeout    = 3000000000
+                write_timeout   = 3000000000
+
+[social]
+        [social.1]
+                host    = "10.10.30.103"
+                port    = 16379
+                pool_size       = 100
+                max_idle        = 100
+                idle_timeout    = 30000000000
+                connect_timeout = 500000000
+                read_timeout    = 3000000000
+                write_timeout   = 3000000000
+        [social.2]
+                host    = "10.10.30.104"
+                port    = 16379
+                pool_size       = 100
+                max_idle        = 100
+                idle_timeout    = 30000000000
+                connect_timeout = 500000000
+                read_timeout    = 3000000000
+                write_timeout   = 3000000000
+        [social.3]
+                host    = "10.10.30.105"
+                port    = 16379
+                pool_size       = 100
+                max_idle        = 100
+                idle_timeout    = 30000000000
+                connect_timeout = 500000000
+                read_timeout    = 3000000000
+                write_timeout   = 3000000000
+        [social.4]
+                host    = "10.10.30.106"
+                port    = 16379
+                pool_size       = 100
+                max_idle        = 100
+                idle_timeout    = 30000000000
+                connect_timeout = 500000000
+                read_timeout    = 3000000000
+                write_timeout   = 3000000000

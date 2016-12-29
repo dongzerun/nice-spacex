@@ -1,0 +1,89 @@
+[server]
+max_cpu     = 0
+thrift_port = 50051
+pprof_port  = 6063
+rest_port   = 7074
+#单位是纳秒, 服务默认超时时间1s
+timeout     = 1000000000
+
+[uiddb]
+host    = "127.0.0.1"
+port    = 3306
+user    = "root"
+pwd     = "0miracle0"
+db_name = "kkgoo"
+max_idle    = 50
+max_open    = 100
+pool_size   = 100
+
+[golog]
+level       = "INFO,DEBUG,WARNING,ERROR"
+console     = 0
+dir         = "/tmp"
+filename    = "spacex.log"
+reserve_num = 7
+suffix      = "20060102"
+colorfull   = 0
+
+[ruledb]
+host    = "127.0.0.1"
+port    = 3306
+user    = "root"
+pwd     = "0miracle0"
+db_name = "kkgoo"
+max_idle    = 50
+max_open    = 100
+pool_size   = 100
+
+#redis cache 无需持久化
+[counter]
+    [counter.1]
+        host        = "127.0.0.1"
+        port        = 6379
+        pool_size   = 100
+        max_idle    = 50
+        #单位是纳秒
+        idle_timeout    = 30000000000
+        connect_timeout = 1000000000
+        read_timeout    = 3000000000
+        write_timeout   = 3000000000
+    [counter.2]
+        host    = "127.0.0.1"
+        port    = 6379
+        pool_size   = 100
+        max_idle    = 50
+        idle_timeout    = 30000000000
+        connect_timeout = 1000000000
+        read_timeout    = 3000000000
+        write_timeout   = 3000000000
+    [counter.3]
+        host    = "127.0.0.1"
+        port    = 6379
+        pool_size   = 100
+        max_idle    = 50
+        idle_timeout    = 30000000000
+        connect_timeout = 1000000000
+        read_timeout    = 3000000000
+        write_timeout   = 3000000000
+
+#redis cache 无需持久化
+[uidcache]
+    [uidcache.1]
+        host    = "127.0.0.1"
+        port    = 6379
+        pool_size   = 100
+        max_idle    = 50
+        idle_timeout    = 30000000000
+        connect_timeout = 1000000000
+        read_timeout    = 3000000000
+        write_timeout   = 3000000000
+    
+    [uidcache.2]
+        host    = "127.0.0.1"
+        port    = 6379
+        pool_size   = 100
+        max_idle    = 50
+        idle_timeout    = 30000000000
+        connect_timeout = 1000000000
+        read_timeout    = 3000000000
+        write_timeout   = 3000000000

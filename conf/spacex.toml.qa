@@ -1,0 +1,120 @@
+[server]
+max_cpu     = 0
+thrift_port = 50049
+pprof_port  = 6063
+rest_port   = 7074
+#单位是纳秒, 服务默认超时时间1s
+timeout     = 1000000000
+
+[longlat_conf] 
+# 用户地理位置经纬度匹配源配置文件
+longlat2code  = "/home/hadoop/work/spacex/conf/longlat2code.conf"
+code2city     = "/home/hadoop/work/spacex/conf/code2city.conf"
+code2province = "/home/hadoop/work/spacex/conf/code2province.conf"
+
+[addb]
+#host    = "blog03"
+#port    = 3306
+#user    = "data_writer"
+#pwd     = "niceMhxzKhl"
+#db_name = "bi_ecom"
+#max_idle    = 5
+#max_open    = 10
+#pool_size   = 10
+
+host    = "bdb.slave.adbase.niceprivate.com"
+port    = 3307
+user    = "adbase"
+pwd     = "Adbase83jS2kxFl#xPQ4b"
+db_name = "ad_base"
+max_idle    = 5
+max_open    = 5
+pool_size   = 10
+
+[misc]
+usercompressed = "lz4"
+
+[golog]
+level       = "INFO,DEBUG,WARNING,ERROR"
+console     = 1
+dir         = "./"
+filename    = "spacex.log"
+reserve_num = 7
+suffix      = "20060102"
+colorfull   = 0
+
+[userdb]
+host    = "bdb.slave.adbase.niceprivate.com"
+port    = 3307
+user    = "adbase"
+pwd     = "Adbase83jS2kxFl#xPQ4b"
+db_name = "ad_base"
+max_idle    = 5
+max_open    = 5
+pool_size   = 10
+
+#bdb.slave.usershow
+#SELECT * from kk_user_show_image_tag_idx_97 where type="undefined" and tagid=11 and uid=1111;
+[usertag]
+host    = "bdb.slave.usershow.niceprivate.com"
+port    = 3306
+user    = "usershow"
+pwd     = "User2015Showx"
+db_name = "user_show"
+max_idle    = 5
+max_open    = 10
+pool_size   = 10
+
+#bdb.slave.paster
+#select count(*) from user_show_paster_60 where pid=xxx and uid=xxx;
+[userpaster]
+host    = "bdb.slave.paster.niceprivate.com"
+port    = 3306
+user    = "paster"
+pwd     = "paster"
+db_name = "paster"
+max_idle    = 5
+max_open    = 10
+pool_size   = 10
+
+#kk_user_collect 用户关注列表
+#select * from kk_user_collect where uid=当前人 and cuid=他所关注的人 limit 1;
+[coreshow]
+host    = "bdb.slave.coreshow.niceprivate.com"
+port    = 3306
+user    = "usershow"
+pwd     = "User2015Showx"
+db_name = "kkgoo"
+max_idle    = 5
+max_open    = 10
+pool_size   = 10
+
+[influxdb]
+host    = "influxes.niceprivate.com"
+port    = 8087
+db      = "adspacex"
+user    = ""
+pwd     = ""
+buffer_size = 4096
+
+#redis cache 无需持久化
+[cache]
+    [cache.1]
+        host    = "127.0.0.1"
+        port    = 6379
+        pool_size   = 100
+        max_idle    = 50
+        idle_timeout    = 30000000000
+        connect_timeout = 1000000000
+        read_timeout    = 3000000000
+        write_timeout   = 3000000000
+    
+    [cache.2]
+        host    = "127.0.0.1"
+        port    = 6379
+        pool_size   = 100
+        max_idle    = 50
+        idle_timeout    = 30000000000
+        connect_timeout = 1000000000
+        read_timeout    = 3000000000
+        write_timeout   = 3000000000

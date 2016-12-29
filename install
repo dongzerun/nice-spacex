@@ -1,0 +1,47 @@
+#!/bin/bash
+
+bin=`dirname "$0"`
+bin=`cd $bin; pwd`
+
+cd $bin
+
+. ./env.sh
+
+git submodule  update --init --recursive
+
+cd tinder
+git pull origin master
+cd ../
+
+echo "gen newest pb idl ... "
+#由于用到了 ffjson 静态生成 json序列化数据，所以thrift改动再重新生成
+cd tinder/thrift/data/spacex
+bash gen.sh
+
+cd $bin
+
+rm -rf $bin/pkg
+
+TARGET=( server/spacex_server server/spacex_bench server/spacex_client )
+
+if [ $# -eq 1 ]
+then
+    TARGET=($1)
+fi
+
+gofmt -w src
+if [ $? != 0 ]; then
+    echo "gofmt error"
+    exit 1
+fi
+
+for t in ${TARGET[@]}; do
+    go install $t
+    if [ $? != 0 ]; then
+        echo -e "\e[31minstall \e[4m$t\e[0m\e[31m error\e[0m"
+        exit 1
+    fi
+    echo -e "\e[32minstall \e[4m$t\e[0m\e[32m success\e[0m"
+done
+
+echo -e "\e[36mdone\e[0m"
